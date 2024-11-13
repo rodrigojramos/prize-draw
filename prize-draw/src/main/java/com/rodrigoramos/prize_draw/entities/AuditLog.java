@@ -14,15 +14,17 @@ public class AuditLog {
     private LocalDateTime date;
     private String action;
     private String details;
+    private PrizeDraw prizeDraw;
 
     public AuditLog() {
     }
 
-    public AuditLog(ObjectId id, LocalDateTime date, String action, String details) {
+    public AuditLog(ObjectId id, LocalDateTime date, String action, String details, PrizeDraw prizeDraw) {
         this.id = id;
         this.date = date;
         this.action = action;
         this.details = details;
+        this.prizeDraw = prizeDraw;
     }
 
     public ObjectId getId() {
@@ -55,5 +57,13 @@ public class AuditLog {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public PrizeDraw getPrizeDraw() {
+        return prizeDraw;
+    }
+
+    public void setPrizeDraw(PrizeDraw prizeDraw) {
+        this.prizeDraw = prizeDraw;
     }
 }

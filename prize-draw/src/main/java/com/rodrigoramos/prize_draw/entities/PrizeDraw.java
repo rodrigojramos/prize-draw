@@ -5,6 +5,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "draws")
 public class PrizeDraw {
@@ -15,16 +17,22 @@ public class PrizeDraw {
     private String description;
     private LocalDateTime creationDate;
     private LocalDateTime endDate;
+    private User creator;
+    private List<Award> awards = new ArrayList<>();
+    private List<ObjectId> participantsId = new ArrayList<>();
+    private List<ObjectId> auditLogsId = new ArrayList<>();
 
     public PrizeDraw() {
     }
 
-    public PrizeDraw(ObjectId id, String name, String description, LocalDateTime creationDate, LocalDateTime endDate) {
+    public PrizeDraw(ObjectId id, String name, String description, LocalDateTime creationDate, LocalDateTime endDate, User creator, List<Award> awards) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.creationDate = creationDate;
         this.endDate = endDate;
+        this.creator = creator;
+        this.awards = awards;
     }
 
     public ObjectId getId() {
@@ -65,5 +73,29 @@ public class PrizeDraw {
 
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public List<Award> getAwards() {
+        return awards;
+    }
+
+    public void setAwards(List<Award> awards) {
+        this.awards = awards;
+    }
+
+    public List<ObjectId> getParticipantsId() {
+        return participantsId;
+    }
+
+    public List<ObjectId> getAuditLogsId() {
+        return auditLogsId;
     }
 }

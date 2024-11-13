@@ -4,6 +4,9 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Document(collection = "users")
 public class User {
 
@@ -13,6 +16,7 @@ public class User {
     private String document;
     private String email;
     private Integer quantityPrizeDraw;
+    private List<PrizeDraw> draws = new ArrayList<>();
 
     public User() {
     }
@@ -63,5 +67,9 @@ public class User {
 
     public void setQuantityPrizeDraw(Integer quantityPrizeDraw) {
         this.quantityPrizeDraw = quantityPrizeDraw;
+    }
+
+    public List<PrizeDraw> getDraws() {
+        return draws;
     }
 }

@@ -9,15 +9,16 @@ public class Award {
 
     @Id
     private ObjectId id;
-
     private String name;
+    private PrizeDraw prizeDraw;
 
     public Award() {
     }
 
-    public Award(ObjectId id, String name) {
+    public Award(ObjectId id, String name, PrizeDraw prizeDraw) {
         this.id = id;
         this.name = name;
+        this.prizeDraw = prizeDraw;
     }
 
     public ObjectId getId() {
@@ -34,5 +35,13 @@ public class Award {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public PrizeDraw getPrizeDraw() {
+        return prizeDraw;
+    }
+
+    public void setPrizeDraw(PrizeDraw prizeDraw) {
+        this.prizeDraw = prizeDraw;
     }
 }
