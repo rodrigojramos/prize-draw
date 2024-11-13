@@ -1,6 +1,5 @@
 package com.rodrigoramos.prize_draw.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,20 +11,20 @@ import java.util.List;
 public class PrizeDraw {
 
     @Id
-    private ObjectId id;
+    private String id;
     private String name;
     private String description;
     private LocalDateTime creationDate;
     private LocalDateTime endDate;
     private User creator;
     private List<Award> awards = new ArrayList<>();
-    private List<ObjectId> participantsId = new ArrayList<>();
-    private List<ObjectId> auditLogsId = new ArrayList<>();
+    private List<String> participantsId = new ArrayList<>();
+    private List<String> auditLogsId = new ArrayList<>();
 
     public PrizeDraw() {
     }
 
-    public PrizeDraw(ObjectId id, String name, String description, LocalDateTime creationDate, LocalDateTime endDate, User creator, List<Award> awards) {
+    public PrizeDraw(String id, String name, String description, LocalDateTime creationDate, LocalDateTime endDate, User creator, List<Award> awards) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -35,11 +34,11 @@ public class PrizeDraw {
         this.awards = awards;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -91,11 +90,11 @@ public class PrizeDraw {
         this.awards = awards;
     }
 
-    public List<ObjectId> getParticipantsId() {
+    public List<String> getParticipantsId() {
         return participantsId;
     }
 
-    public List<ObjectId> getAuditLogsId() {
+    public List<String> getAuditLogsId() {
         return auditLogsId;
     }
 }

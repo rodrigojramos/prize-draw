@@ -1,6 +1,5 @@
 package com.rodrigoramos.prize_draw.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,24 +7,24 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Award {
 
     @Id
-    private ObjectId id;
+    private String id;
     private String name;
     private PrizeDraw prizeDraw;
 
     public Award() {
     }
 
-    public Award(ObjectId id, String name, PrizeDraw prizeDraw) {
+    public Award(String id, String name, PrizeDraw prizeDraw) {
         this.id = id;
         this.name = name;
         this.prizeDraw = prizeDraw;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 

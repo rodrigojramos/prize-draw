@@ -1,6 +1,5 @@
 package com.rodrigoramos.prize_draw.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,27 +10,27 @@ import java.util.List;
 public class Participant {
 
     @Id
-    private ObjectId id;
+    private String id;
     private String name;
     private String document;
     private String email;
-    private List<ObjectId> prizeDrawsId = new ArrayList<>();
+    private List<String> prizeDrawsId = new ArrayList<>();
 
     public Participant() {
     }
 
-    public Participant(ObjectId id, String name, String document, String email) {
+    public Participant(String id, String name, String document, String email) {
         this.id = id;
         this.name = name;
         this.document = document;
         this.email = email;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -59,7 +58,7 @@ public class Participant {
         this.email = email;
     }
 
-    public List<ObjectId> getPrizeDrawsId() {
+    public List<String> getPrizeDrawsId() {
         return prizeDrawsId;
     }
 }

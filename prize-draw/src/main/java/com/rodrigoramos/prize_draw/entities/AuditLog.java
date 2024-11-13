@@ -1,6 +1,5 @@
 package com.rodrigoramos.prize_draw.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,7 +9,7 @@ import java.time.LocalDateTime;
 public class AuditLog {
 
     @Id
-    private ObjectId id;
+    private String id;
     private LocalDateTime date;
     private String action;
     private String details;
@@ -19,7 +18,7 @@ public class AuditLog {
     public AuditLog() {
     }
 
-    public AuditLog(ObjectId id, LocalDateTime date, String action, String details, PrizeDraw prizeDraw) {
+    public AuditLog(String id, LocalDateTime date, String action, String details, PrizeDraw prizeDraw) {
         this.id = id;
         this.date = date;
         this.action = action;
@@ -27,11 +26,11 @@ public class AuditLog {
         this.prizeDraw = prizeDraw;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 

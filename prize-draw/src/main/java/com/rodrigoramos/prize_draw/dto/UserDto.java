@@ -1,32 +1,33 @@
-package com.rodrigoramos.prize_draw.entities;
+package com.rodrigoramos.prize_draw.dto;
 
+import com.rodrigoramos.prize_draw.entities.User;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.List;
+public class UserDto {
 
-@Document(collection = "users")
-public class User {
-
-    @Id
     private String id;
     private String name;
     private String document;
     private String email;
     private Integer quantityPrizeDraw;
-    private List<PrizeDraw> draws = new ArrayList<>();
 
-    public User() {
+    public UserDto() {
     }
 
-    public User(String id, String name, String document, String email, Integer quantityPrizeDraw) {
+    public UserDto(String id, String name, String document, String email, Integer quantityPrizeDraw) {
         this.id = id;
         this.name = name;
         this.document = document;
         this.email = email;
         this.quantityPrizeDraw = quantityPrizeDraw;
+    }
+
+    public UserDto(User entity) {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.document = entity.getDocument();
+        this.email = entity.getEmail();
+        this.quantityPrizeDraw = entity.getQuantityPrizeDraw();
     }
 
     public String getId() {
@@ -67,9 +68,5 @@ public class User {
 
     public void setQuantityPrizeDraw(Integer quantityPrizeDraw) {
         this.quantityPrizeDraw = quantityPrizeDraw;
-    }
-
-    public List<PrizeDraw> getDraws() {
-        return draws;
     }
 }
