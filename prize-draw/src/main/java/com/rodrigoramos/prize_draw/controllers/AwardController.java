@@ -1,7 +1,7 @@
 package com.rodrigoramos.prize_draw.controllers;
 
-import com.rodrigoramos.prize_draw.dto.ParticipantDto;
-import com.rodrigoramos.prize_draw.services.ParticipantService;
+import com.rodrigoramos.prize_draw.dto.AwardDto;
+import com.rodrigoramos.prize_draw.services.AwardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,40 +11,40 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/participants")
-public class ParticipantController {
+@RequestMapping(value = "/awards")
+public class AwardController {
 
     @Autowired
-    private ParticipantService participantService;
+    private AwardService awardService;
 
     @GetMapping
-    public ResponseEntity<List<ParticipantDto>> findAll() {
-        List<ParticipantDto> list = participantService.findAll();
+    public ResponseEntity<List<AwardDto>> findAll() {
+        List<AwardDto> list = awardService.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ParticipantDto> findById(@PathVariable String id) {
-        ParticipantDto dto = participantService.findById(id);
+    public ResponseEntity<AwardDto> findById(@PathVariable String id) {
+        AwardDto dto = awardService.findById(id);
         return ResponseEntity.ok().body(dto);
     }
 
     @PostMapping
-    public ResponseEntity<ParticipantDto> insert(@RequestBody ParticipantDto dto) {
-        dto = participantService.insert(dto);
+    public ResponseEntity<AwardDto> insert(@RequestBody AwardDto dto) {
+        dto = awardService.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ParticipantDto> update(@PathVariable String id, @RequestBody ParticipantDto dto) {
-        dto = participantService.update(id, dto);
+    public ResponseEntity<AwardDto> update(@PathVariable String id, @RequestBody AwardDto dto) {
+        dto = awardService.update(id, dto);
         return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
-        participantService.delete(id);
+        awardService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
