@@ -1,29 +1,35 @@
-package com.rodrigoramos.prize_draw.entities;
+package com.rodrigoramos.prize_draw.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.rodrigoramos.prize_draw.entities.AuditLog;
+import com.rodrigoramos.prize_draw.entities.PrizeDraw;
 
 import java.time.LocalDateTime;
 
-@Document(collection = "logs")
-public class AuditLog {
+public class AuditLogDto {
 
-    @Id
     private String id;
-    private LocalDateTime date = LocalDateTime.now();
+    private LocalDateTime date;
     private String action;
     private String details;
     private PrizeDraw prizeDraw;
 
-    public AuditLog() {
+    public AuditLogDto() {
     }
 
-    public AuditLog(String id, LocalDateTime date, String action, String details, PrizeDraw prizeDraw) {
+    public AuditLogDto(String id, LocalDateTime date, String action, String details, PrizeDraw prizeDraw) {
         this.id = id;
         this.date = date;
         this.action = action;
         this.details = details;
         this.prizeDraw = prizeDraw;
+    }
+
+    public AuditLogDto(AuditLog entity) {
+        this.id = entity.getId();
+        this.date = entity.getDate();
+        this.action = entity.getAction();
+        this.details = entity.getDetails();
+        this.prizeDraw = entity.getPrizeDraw();
     }
 
     public String getId() {
