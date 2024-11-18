@@ -1,7 +1,6 @@
 package com.rodrigoramos.prize_draw.dto;
 
 import com.rodrigoramos.prize_draw.entities.PrizeDraw;
-import com.rodrigoramos.prize_draw.entities.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,7 +12,7 @@ public class PrizeDrawDto {
     private String description;
     private LocalDateTime creationDate;
     private LocalDateTime endDate;
-    private User creator;
+    private UserDto creator;
     private List<String> awards;
     private List<String> participantsId;
     private List<String> auditLogsId;
@@ -25,7 +24,8 @@ public class PrizeDrawDto {
                         String name,
                         String description,
                         LocalDateTime creationDate,
-                        LocalDateTime endDate, User creator,
+                        LocalDateTime endDate,
+                        UserDto creator,
                         List<String> awards,
                         List<String> participantsId,
                         List<String> auditLogsId) {
@@ -34,7 +34,6 @@ public class PrizeDrawDto {
         this.description = description;
         this.creationDate = creationDate;
         this.endDate = endDate;
-        this.creator = creator;
         this.awards = awards;
         this.participantsId = participantsId;
         this.auditLogsId = auditLogsId;
@@ -46,7 +45,9 @@ public class PrizeDrawDto {
         this.description = entity.getDescription();
         this.creationDate = entity.getCreationDate();
         this.endDate = entity.getEndDate();
-        this.creator = entity.getCreator();
+        if (entity.getCreator() != null) {
+            this.creator = new UserDto(entity.getCreator());
+        }
         this.awards = entity.getAwards();
         this.participantsId = entity.getParticipantsId();
         this.auditLogsId = entity.getAuditLogsId();
@@ -92,11 +93,11 @@ public class PrizeDrawDto {
         this.endDate = endDate;
     }
 
-    public User getCreator() {
+    public UserDto getCreator() {
         return creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(UserDto creator) {
         this.creator = creator;
     }
 

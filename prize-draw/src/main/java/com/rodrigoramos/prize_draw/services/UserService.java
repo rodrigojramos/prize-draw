@@ -15,6 +15,15 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public User findCreatorById(String id) {
+        User entity = findUserById(id);
+        return entity;
+    }
+
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
     public UserDto findById(String id) {
         User entity = findUserById(id);
         return new UserDto(entity);
@@ -49,6 +58,11 @@ public class UserService {
         entity.setEmail(dto.getEmail());
         entity.setDocument(dto.getDocument());
         entity.setQuantityPrizeDraw(dto.getQuantityPrizeDraw());
+
+        if (dto.getPrizeDrawsId() != null) {
+            entity.getDraws().clear();
+            entity.getDraws().addAll(dto.getPrizeDrawsId());
+        }
     }
 
 }
