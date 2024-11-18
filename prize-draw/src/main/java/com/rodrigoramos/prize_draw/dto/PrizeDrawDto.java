@@ -1,36 +1,55 @@
-package com.rodrigoramos.prize_draw.entities;
+package com.rodrigoramos.prize_draw.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.rodrigoramos.prize_draw.entities.PrizeDraw;
+import com.rodrigoramos.prize_draw.entities.User;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "draws")
-public class PrizeDraw {
+public class PrizeDrawDto {
 
-    @Id
     private String id;
     private String name;
     private String description;
-    private LocalDateTime creationDate = LocalDateTime.now();
+    private LocalDateTime creationDate;
     private LocalDateTime endDate;
     private User creator;
-    private List<String> awards = new ArrayList<>();
-    private List<String> participantsId = new ArrayList<>();
-    private List<String> auditLogsId = new ArrayList<>();
+    private List<String> awards;
+    private List<String> participantsId;
+    private List<String> auditLogsId;
 
-    public PrizeDraw() {
+    public PrizeDrawDto() {
     }
 
-    public PrizeDraw(String id, String name, String description, LocalDateTime endDate, User creator) {
+    public PrizeDrawDto(String id,
+                        String name,
+                        String description,
+                        LocalDateTime creationDate,
+                        LocalDateTime endDate, User creator,
+                        List<String> awards,
+                        List<String> participantsId,
+                        List<String> auditLogsId) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.creationDate = LocalDateTime.now();
+        this.creationDate = creationDate;
         this.endDate = endDate;
         this.creator = creator;
+        this.awards = awards;
+        this.participantsId = participantsId;
+        this.auditLogsId = auditLogsId;
+    }
+
+    public PrizeDrawDto(PrizeDraw entity) {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.description = entity.getDescription();
+        this.creationDate = entity.getCreationDate();
+        this.endDate = entity.getEndDate();
+        this.creator = entity.getCreator();
+        this.awards = entity.getAwards();
+        this.participantsId = entity.getParticipantsId();
+        this.auditLogsId = entity.getAuditLogsId();
     }
 
     public String getId() {
@@ -93,7 +112,15 @@ public class PrizeDraw {
         return participantsId;
     }
 
+    public void setParticipantsId(List<String> participantsId) {
+        this.participantsId = participantsId;
+    }
+
     public List<String> getAuditLogsId() {
         return auditLogsId;
+    }
+
+    public void setAuditLogsId(List<String> auditLogsId) {
+        this.auditLogsId = auditLogsId;
     }
 }

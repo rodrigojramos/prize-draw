@@ -2,21 +2,26 @@ package com.rodrigoramos.prize_draw.dto;
 
 import com.rodrigoramos.prize_draw.entities.Participant;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParticipantDto {
 
     private String id;
     private String name;
     private String document;
     private String email;
+    private List<String> prizeDrawsId = new ArrayList<>();
 
     public ParticipantDto() {
     }
 
-    public ParticipantDto(String id, String name, String document, String email) {
+    public ParticipantDto(String id, String name, String document, String email, List<String> prizeDrawsId) {
         this.id = id;
         this.name = name;
         this.document = document;
         this.email = email;
+        this.prizeDrawsId = prizeDrawsId;
     }
 
     public ParticipantDto(Participant entity) {
@@ -24,6 +29,9 @@ public class ParticipantDto {
         this.name = entity.getName();
         this.document = entity.getDocument();
         this.email = entity.getEmail();
+        for (String drawId : entity.getPrizeDrawsId()) {
+            prizeDrawsId.add(drawId);
+        }
     }
 
     public String getId() {
