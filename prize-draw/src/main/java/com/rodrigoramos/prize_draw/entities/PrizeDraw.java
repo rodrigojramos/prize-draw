@@ -5,7 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Document(collection = "draws")
 public class PrizeDraw {
@@ -18,7 +20,7 @@ public class PrizeDraw {
     private LocalDateTime endDate;
     private User creator;
     private List<String> awards = new ArrayList<>();
-    private List<String> participantsId = new ArrayList<>();
+    private Set<String> participantsId = new HashSet<>();
     private List<String> auditLogsId = new ArrayList<>();
 
     public PrizeDraw() {
@@ -61,10 +63,6 @@ public class PrizeDraw {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public LocalDateTime getEndDate() {
         return endDate;
     }
@@ -89,7 +87,7 @@ public class PrizeDraw {
         this.awards = awards;
     }
 
-    public List<String> getParticipantsId() {
+    public Set<String> getParticipantsId() {
         return participantsId;
     }
 

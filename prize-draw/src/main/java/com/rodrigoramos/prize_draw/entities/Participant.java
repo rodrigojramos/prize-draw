@@ -3,8 +3,8 @@ package com.rodrigoramos.prize_draw.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Document(collection = "participants")
 public class Participant {
@@ -14,7 +14,7 @@ public class Participant {
     private String name;
     private String document;
     private String email;
-    private List<String> prizeDrawsId = new ArrayList<>();
+    private Set<String> prizeDrawsId = new HashSet<>();
 
     public Participant() {
     }
@@ -58,7 +58,7 @@ public class Participant {
         this.email = email;
     }
 
-    public List<String> getPrizeDrawsId() {
+    public Set<String> getPrizeDrawsId() {
         return prizeDrawsId;
     }
 }

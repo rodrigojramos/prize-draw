@@ -2,10 +2,14 @@ package com.rodrigoramos.prize_draw.services;
 
 import com.rodrigoramos.prize_draw.dto.ParticipantDto;
 import com.rodrigoramos.prize_draw.entities.Participant;
+import com.rodrigoramos.prize_draw.entities.PrizeDraw;
 import com.rodrigoramos.prize_draw.repositories.ParticipantRepository;
+import com.rodrigoramos.prize_draw.services.exceptions.InvalidPrizeDrawException;
+import com.rodrigoramos.prize_draw.services.exceptions.ParticipantAlreadyRegisteredException;
 import com.rodrigoramos.prize_draw.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +20,12 @@ public class ParticipantService {
     @Autowired
     private ParticipantRepository participantRepository;
 
+    @Autowired
+    private PrizeDrawService prizeDrawService;
+
     public List<ParticipantDto> findAll() {
         List<Participant> list = participantRepository.findAll();
-        return list.stream().map(x -> new ParticipantDto(x)).toList();
+        return list.stream().map(ParticipantDto::new).toList();
     }
 
     public ParticipantDto findById(String id) {
@@ -26,17 +33,28 @@ public class ParticipantService {
         return new ParticipantDto(entity);
     }
 
-    public ParticipantDto insert(ParticipantDto dto) {
-        Participant entity = new Participant();
-        copyDtoToEntity(dto, entity);
-        entity = participantRepository.insert(entity);
-        return new ParticipantDto(entity);
-    }
+    @Transactional
+    public ParticipantDto insert(ParticipantDto dto, String prizeDrawId) {
+        PrizeDraw prizeDraw = validateAndFindPrizeDraw(prizeDrawId);
 
-    public ParticipantDto update(String id, ParticipantDto dto) {
-        Participant entity = findParticipantById(id);
-        copyDtoToEntity(dto, entity);
-        entity = participantRepository.save(entity);
+        boolean alreadyRegistered = participantRepository.existsByEmailAndDocumentAndPrizeDrawsId(
+                dto.getEmail(),
+                dto.getDocument(),
+                prizeDrawId);
+
+        if (alreadyRegistered) {
+            throw new ParticipantAlreadyRegisteredException("O participante já está inscrito neste sorteio.");
+        }
+
+        Participant entity = new Participant();
+        copyDtoToEntity(dto, entity, prizeDrawId);
+        entity = participantRepository.insert(entity);
+
+        if (!prizeDraw.getParticipantsId().contains(entity.getId())) {
+            prizeDraw.getParticipantsId().add(entity.getId());
+            prizeDrawService.save(prizeDraw);
+        }
+
         return new ParticipantDto(entity);
     }
 
@@ -50,9 +68,19 @@ public class ParticipantService {
         return result.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado"));
     }
 
-    private void copyDtoToEntity (ParticipantDto dto, Participant entity) {
+    private PrizeDraw validateAndFindPrizeDraw(String prizeDrawId) {
+        if (prizeDrawId == null || prizeDrawId.isBlank()) {
+            throw new InvalidPrizeDrawException("O ID do sorteio não pode ser nulo ou vazio.");
+        }
+        return prizeDrawService.findPrizeDrawById(prizeDrawId);
+    }
+
+    private void copyDtoToEntity (ParticipantDto dto, Participant entity, String prizeDrawId) {
         entity.setName(dto.getName());
         entity.setDocument(dto.getDocument());
         entity.setEmail(dto.getEmail());
+        if (!entity.getPrizeDrawsId().contains(prizeDrawId)) {
+            entity.getPrizeDrawsId().add(prizeDrawId);
+        }
     }
 }

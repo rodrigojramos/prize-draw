@@ -2,8 +2,8 @@ package com.rodrigoramos.prize_draw.dto;
 
 import com.rodrigoramos.prize_draw.entities.Participant;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ParticipantDto {
 
@@ -11,12 +11,12 @@ public class ParticipantDto {
     private String name;
     private String document;
     private String email;
-    private List<String> prizeDrawsId = new ArrayList<>();
+    private Set<String> prizeDrawsId = new HashSet<>();
 
     public ParticipantDto() {
     }
 
-    public ParticipantDto(String id, String name, String document, String email, List<String> prizeDrawsId) {
+    public ParticipantDto(String id, String name, String document, String email, Set<String> prizeDrawsId) {
         this.id = id;
         this.name = name;
         this.document = document;
@@ -64,5 +64,9 @@ public class ParticipantDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<String> getPrizeDrawsId() {
+        return prizeDrawsId;
     }
 }

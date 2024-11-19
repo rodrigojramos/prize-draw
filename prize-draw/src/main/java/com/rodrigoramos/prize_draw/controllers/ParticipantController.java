@@ -30,16 +30,10 @@ public class ParticipantController {
     }
 
     @PostMapping
-    public ResponseEntity<ParticipantDto> insert(@RequestBody ParticipantDto dto) {
-        dto = participantService.insert(dto);
+    public ResponseEntity<ParticipantDto> insert(@RequestBody ParticipantDto dto, @RequestParam String prizeDrawId) {
+        dto = participantService.insert(dto, prizeDrawId);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
-    }
-
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<ParticipantDto> update(@PathVariable String id, @RequestBody ParticipantDto dto) {
-        dto = participantService.update(id, dto);
-        return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping(value = "/{id}")

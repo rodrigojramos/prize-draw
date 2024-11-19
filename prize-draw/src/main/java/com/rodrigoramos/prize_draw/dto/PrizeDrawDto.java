@@ -4,6 +4,7 @@ import com.rodrigoramos.prize_draw.entities.PrizeDraw;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public class PrizeDrawDto {
 
@@ -14,7 +15,7 @@ public class PrizeDrawDto {
     private LocalDateTime endDate;
     private UserDto creator;
     private List<String> awards;
-    private List<String> participantsId;
+    private Set<String> participantsId;
     private List<String> auditLogsId;
 
     public PrizeDrawDto() {
@@ -27,7 +28,7 @@ public class PrizeDrawDto {
                         LocalDateTime endDate,
                         UserDto creator,
                         List<String> awards,
-                        List<String> participantsId,
+                        Set<String> participantsId,
                         List<String> auditLogsId) {
         this.id = id;
         this.name = name;
@@ -109,11 +110,11 @@ public class PrizeDrawDto {
         this.awards = awards;
     }
 
-    public List<String> getParticipantsId() {
+    public Set<String> getParticipantsId() {
         return participantsId;
     }
 
-    public void setParticipantsId(List<String> participantsId) {
+    public void setParticipantsId(Set<String> participantsId) {
         this.participantsId = participantsId;
     }
 

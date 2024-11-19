@@ -21,6 +21,10 @@ public class PrizeDrawService {
     @Autowired
     private UserService userService;
 
+    public void save(PrizeDraw prizeDraw) {
+        prizeDrawRepository.save(prizeDraw);
+    }
+
     public List<PrizeDrawDto> findAll() {
         List<PrizeDraw> list = prizeDrawRepository.findAll();
         return list.stream().map(x -> new PrizeDrawDto(x)).toList();
@@ -71,7 +75,7 @@ public class PrizeDrawService {
         prizeDrawRepository.deleteById(id);
     }
 
-    private PrizeDraw findPrizeDrawById(String id) {
+    public PrizeDraw findPrizeDrawById(String id) {
         Optional<PrizeDraw> result = prizeDrawRepository.findById(id);
         return result.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado"));
     }
@@ -87,5 +91,4 @@ public class PrizeDrawService {
             entity.setCreator(creator);
         }
     }
-
 }
