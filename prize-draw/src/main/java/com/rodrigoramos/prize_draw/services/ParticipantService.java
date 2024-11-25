@@ -23,8 +23,8 @@ public class ParticipantService {
     @Autowired
     private PrizeDrawService prizeDrawService;
 
-    public List<ParticipantDto> findAll() {
-        List<Participant> list = participantRepository.findAll();
+    public List<ParticipantDto> findByPrizeDrawId(String prizeDrawId) {
+        List<Participant> list = participantRepository.findByPrizeDrawId(prizeDrawId);
         return list.stream().map(ParticipantDto::new).toList();
     }
 
@@ -37,13 +37,18 @@ public class ParticipantService {
     public ParticipantDto insert(ParticipantDto dto, String prizeDrawId) {
         PrizeDraw prizeDraw = validateAndFindPrizeDraw(prizeDrawId);
 
-        boolean alreadyRegistered = participantRepository.existsByEmailAndDocumentAndPrizeDrawsId(
+        boolean emailAlreadyRegistered = participantRepository.existsByEmailAndPrizeDrawsId(
                 dto.getEmail(),
-                dto.getDocument(),
-                prizeDrawId);
+                prizeDrawId
+        );
 
-        if (alreadyRegistered) {
-            throw new ParticipantAlreadyRegisteredException("O participante já está inscrito neste sorteio.");
+        boolean documentAlreadyRegistered = participantRepository.existsByDocumentAndPrizeDrawsId(
+                dto.getDocument(),
+                prizeDrawId
+        );
+
+        if (emailAlreadyRegistered || documentAlreadyRegistered) {
+            throw new ParticipantAlreadyRegisteredException("O participante já está inscrito neste sorteio. Documento ou email já está inscrito.");
         }
 
         Participant entity = new Participant();

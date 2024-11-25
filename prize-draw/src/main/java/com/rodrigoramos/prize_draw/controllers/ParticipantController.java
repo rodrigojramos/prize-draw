@@ -18,8 +18,8 @@ public class ParticipantController {
     private ParticipantService participantService;
 
     @GetMapping
-    public ResponseEntity<List<ParticipantDto>> findAll() {
-        List<ParticipantDto> list = participantService.findAll();
+    public ResponseEntity<List<ParticipantDto>> findAll(@RequestParam String prizeDrawId) {
+        List<ParticipantDto> list = participantService.findByPrizeDrawId(prizeDrawId);
         return ResponseEntity.ok().body(list);
     }
 
