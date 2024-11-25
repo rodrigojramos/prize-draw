@@ -18,13 +18,13 @@ public class AuditLogController {
     private AuditLogService auditLogService;
 
     @GetMapping
-    public ResponseEntity<List<AuditLogDto>> findAll() {
-        List<AuditLogDto> list = auditLogService.findAll();
+    public ResponseEntity<List<AuditLogDto>> findByPrizeDrawId(@RequestParam String prizeDrawId) {
+        List<AuditLogDto> list = auditLogService.findLogsByPrizeDrawId(prizeDrawId);
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<AuditLogDto> findById(String id) {
+    public ResponseEntity<AuditLogDto> findById(@PathVariable String id) {
         AuditLogDto dto = auditLogService.findById(id);
         return ResponseEntity.ok().body(dto);
     }
@@ -34,12 +34,6 @@ public class AuditLogController {
         dto = auditLogService.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
-    }
-
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<AuditLogDto> update(@PathVariable String id, @RequestBody AuditLogDto dto) {
-        dto = auditLogService.update(id, dto);
-        return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping(value = "/{id}")

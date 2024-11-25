@@ -1,8 +1,11 @@
 package com.rodrigoramos.prize_draw.services;
 
+import com.rodrigoramos.prize_draw.dto.AuditLogDto;
 import com.rodrigoramos.prize_draw.dto.ParticipantDto;
+import com.rodrigoramos.prize_draw.entities.AuditLog;
 import com.rodrigoramos.prize_draw.entities.Participant;
 import com.rodrigoramos.prize_draw.entities.PrizeDraw;
+import com.rodrigoramos.prize_draw.repositories.AuditLogRepository;
 import com.rodrigoramos.prize_draw.repositories.ParticipantRepository;
 import com.rodrigoramos.prize_draw.services.exceptions.InvalidPrizeDrawException;
 import com.rodrigoramos.prize_draw.services.exceptions.ParticipantAlreadyRegisteredException;
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +26,9 @@ public class ParticipantService {
 
     @Autowired
     private PrizeDrawService prizeDrawService;
+
+    @Autowired
+    private AuditLogService auditLogService;
 
     public List<ParticipantDto> findByPrizeDrawId(String prizeDrawId) {
         List<Participant> list = participantRepository.findByPrizeDrawId(prizeDrawId);
@@ -55,7 +62,14 @@ public class ParticipantService {
         copyDtoToEntity(dto, entity, prizeDrawId);
         entity = participantRepository.insert(entity);
 
-        if (!prizeDraw.getParticipantsId().contains(entity.getId())) {
+        AuditLog log = new AuditLog();
+        log.setAction("Usuário registrado!");
+        log.setDetails(entity.getName() + " foi registrado no sorteio " + prizeDrawId);
+        log.setPrizeDrawId(prizeDrawId);
+        AuditLogDto logDto = auditLogService.insert(new AuditLogDto(log));
+
+        if (!prizeDraw.getAuditLogsId().contains(logDto.getId()) && !prizeDraw.getParticipantsId().contains(entity.getId())) {
+            prizeDraw.getAuditLogsId().add(logDto.getId());
             prizeDraw.getParticipantsId().add(entity.getId());
             prizeDrawService.save(prizeDraw);
         }

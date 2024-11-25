@@ -16,8 +16,8 @@ public class AuditLogService {
     @Autowired
     private AuditLogRepository auditLogRepository;
 
-    public List<AuditLogDto> findAll() {
-        List<AuditLog> list = auditLogRepository.findAll();
+    public List<AuditLogDto> findLogsByPrizeDrawId(String prizeDrawId) {
+        List<AuditLog> list = auditLogRepository.findLogsByPrizeDrawId(prizeDrawId);
         return list.stream().map(x -> new AuditLogDto(x)).toList();
     }
 
@@ -30,13 +30,6 @@ public class AuditLogService {
         AuditLog entity = new AuditLog();
         copyDtoToEntity(dto, entity);
         entity = auditLogRepository.insert(entity);
-        return new AuditLogDto(entity);
-    }
-
-    public AuditLogDto update(String id, AuditLogDto dto) {
-        AuditLog entity = findAuditLogById(id);
-        copyDtoToEntity(dto, entity);
-        entity = auditLogRepository.save(entity);
         return new AuditLogDto(entity);
     }
 
@@ -54,6 +47,6 @@ public class AuditLogService {
         entity.setDate(dto.getDate());
         entity.setAction(dto.getAction());
         entity.setDetails(dto.getDetails());
-        entity.setPrizeDraw(dto.getPrizeDraw());
+        entity.setPrizeDrawId(dto.getPrizeDrawId());
     }
 }

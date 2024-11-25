@@ -1,7 +1,6 @@
 package com.rodrigoramos.prize_draw.dto;
 
 import com.rodrigoramos.prize_draw.entities.AuditLog;
-import com.rodrigoramos.prize_draw.entities.PrizeDraw;
 
 import java.time.LocalDateTime;
 
@@ -11,17 +10,17 @@ public class AuditLogDto {
     private LocalDateTime date;
     private String action;
     private String details;
-    private PrizeDraw prizeDraw;
+    private String prizeDrawId;
 
     public AuditLogDto() {
     }
 
-    public AuditLogDto(String id, LocalDateTime date, String action, String details, PrizeDraw prizeDraw) {
+    public AuditLogDto(String id, LocalDateTime date, String action, String details, String prizeDrawId) {
         this.id = id;
         this.date = date;
         this.action = action;
         this.details = details;
-        this.prizeDraw = prizeDraw;
+        this.prizeDrawId = prizeDrawId;
     }
 
     public AuditLogDto(AuditLog entity) {
@@ -29,7 +28,7 @@ public class AuditLogDto {
         this.date = entity.getDate();
         this.action = entity.getAction();
         this.details = entity.getDetails();
-        this.prizeDraw = entity.getPrizeDraw();
+        this.prizeDrawId = entity.getPrizeDrawId();
     }
 
     public String getId() {
@@ -64,11 +63,11 @@ public class AuditLogDto {
         this.details = details;
     }
 
-    public PrizeDraw getPrizeDraw() {
-        return prizeDraw;
+    public String getPrizeDrawId() {
+        return prizeDrawId;
     }
 
-    public void setPrizeDraw(PrizeDraw prizeDraw) {
-        this.prizeDraw = prizeDraw;
+    public void setPrizeDrawId(String prizeDrawId) {
+        this.prizeDrawId = prizeDrawId;
     }
 }

@@ -13,17 +13,17 @@ public class AuditLog {
     private LocalDateTime date = LocalDateTime.now();
     private String action;
     private String details;
-    private PrizeDraw prizeDraw;
+    private String prizeDrawId;
 
     public AuditLog() {
     }
 
-    public AuditLog(String id, LocalDateTime date, String action, String details, PrizeDraw prizeDraw) {
+    public AuditLog(String id, LocalDateTime date, String action, String details, String prizeDrawId) {
         this.id = id;
         this.date = date;
         this.action = action;
         this.details = details;
-        this.prizeDraw = prizeDraw;
+        this.prizeDrawId = prizeDrawId;
     }
 
     public String getId() {
@@ -58,11 +58,11 @@ public class AuditLog {
         this.details = details;
     }
 
-    public PrizeDraw getPrizeDraw() {
-        return prizeDraw;
+    public String getPrizeDrawId() {
+        return prizeDrawId;
     }
 
-    public void setPrizeDraw(PrizeDraw prizeDraw) {
-        this.prizeDraw = prizeDraw;
+    public void setPrizeDrawId(String prizeDrawId) {
+        this.prizeDrawId = prizeDrawId;
     }
 }
