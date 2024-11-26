@@ -17,6 +17,7 @@ public class PrizeDrawDto {
     private List<String> awards;
     private Set<String> participantsId;
     private List<String> auditLogsId;
+    private List<ParticipantDto> winners;
 
     public PrizeDrawDto() {
     }
@@ -29,7 +30,8 @@ public class PrizeDrawDto {
                         UserDto creator,
                         List<String> awards,
                         Set<String> participantsId,
-                        List<String> auditLogsId) {
+                        List<String> auditLogsId,
+                        List<ParticipantDto> winners) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -38,6 +40,7 @@ public class PrizeDrawDto {
         this.awards = awards;
         this.participantsId = participantsId;
         this.auditLogsId = auditLogsId;
+        this.winners = winners;
     }
 
     public PrizeDrawDto(PrizeDraw entity) {
@@ -52,6 +55,7 @@ public class PrizeDrawDto {
         this.awards = entity.getAwards();
         this.participantsId = entity.getParticipantsId();
         this.auditLogsId = entity.getAuditLogsId();
+        this.winners = entity.getWinners().stream().map(ParticipantDto::new).toList();
     }
 
     public String getId() {
@@ -124,5 +128,13 @@ public class PrizeDrawDto {
 
     public void setAuditLogsId(List<String> auditLogsId) {
         this.auditLogsId = auditLogsId;
+    }
+
+    public List<ParticipantDto> getWinners() {
+        return winners;
+    }
+
+    public void setWinners(List<ParticipantDto> winners) {
+        this.winners = winners;
     }
 }

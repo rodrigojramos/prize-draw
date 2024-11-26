@@ -22,6 +22,7 @@ public class PrizeDraw {
     private List<String> awards = new ArrayList<>();
     private Set<String> participantsId = new HashSet<>();
     private List<String> auditLogsId = new ArrayList<>();
+    private List<Participant> winners = new ArrayList<>();
 
     public PrizeDraw() {
     }
@@ -93,5 +94,13 @@ public class PrizeDraw {
 
     public List<String> getAuditLogsId() {
         return auditLogsId;
+    }
+
+    public List<Participant> getWinners() {
+        return winners;
+    }
+
+    public void setWinners(List<Participant> winners) {
+        this.winners = winners;
     }
 }

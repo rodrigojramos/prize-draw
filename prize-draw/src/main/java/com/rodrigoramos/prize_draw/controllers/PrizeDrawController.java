@@ -1,5 +1,6 @@
 package com.rodrigoramos.prize_draw.controllers;
 
+import com.rodrigoramos.prize_draw.dto.ParticipantDto;
 import com.rodrigoramos.prize_draw.dto.PrizeDrawDto;
 import com.rodrigoramos.prize_draw.services.PrizeDrawService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,12 @@ public class PrizeDrawController {
     public ResponseEntity<PrizeDrawDto> findById(@PathVariable String id) {
         PrizeDrawDto dto = prizeDrawService.findById(id);
         return ResponseEntity.ok().body(dto);
+    }
+
+    @PostMapping(value = "/{id}/winners")
+    public ResponseEntity<List<ParticipantDto>> drawWinners(@PathVariable String id) {
+        List<ParticipantDto> winners = prizeDrawService.winners(id);
+        return ResponseEntity.ok().body(winners);
     }
 
     @PostMapping

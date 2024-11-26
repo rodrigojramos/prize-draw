@@ -5,7 +5,6 @@ import com.rodrigoramos.prize_draw.dto.ParticipantDto;
 import com.rodrigoramos.prize_draw.entities.AuditLog;
 import com.rodrigoramos.prize_draw.entities.Participant;
 import com.rodrigoramos.prize_draw.entities.PrizeDraw;
-import com.rodrigoramos.prize_draw.repositories.AuditLogRepository;
 import com.rodrigoramos.prize_draw.repositories.ParticipantRepository;
 import com.rodrigoramos.prize_draw.services.exceptions.InvalidPrizeDrawException;
 import com.rodrigoramos.prize_draw.services.exceptions.ParticipantAlreadyRegisteredException;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 

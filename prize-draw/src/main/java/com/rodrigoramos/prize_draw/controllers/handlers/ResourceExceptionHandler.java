@@ -3,6 +3,7 @@ package com.rodrigoramos.prize_draw.controllers.handlers;
 import com.rodrigoramos.prize_draw.dto.CustomError;
 import com.rodrigoramos.prize_draw.services.exceptions.InvalidPrizeDrawException;
 import com.rodrigoramos.prize_draw.services.exceptions.ParticipantAlreadyRegisteredException;
+import com.rodrigoramos.prize_draw.services.exceptions.PrizeDrawAlreadyMadeException;
 import com.rodrigoramos.prize_draw.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,13 @@ public class ResourceExceptionHandler {
 
     @ExceptionHandler(InvalidPrizeDrawException.class)
     public ResponseEntity<CustomError> invalidPrizeDraw(InvalidPrizeDrawException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        CustomError err = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(PrizeDrawAlreadyMadeException.class)
+    public ResponseEntity<CustomError> prizeDrawAlreadyMade(PrizeDrawAlreadyMadeException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         CustomError err = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
