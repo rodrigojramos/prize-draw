@@ -3,11 +3,10 @@ package com.rodrigoramos.prize_draw.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Document(collection = "users")
-public class User {
+public class User{
 
     @Id
     private String id;
@@ -16,6 +15,7 @@ public class User {
     private String email;
     private Integer quantityPrizeDraw = 0;
     private List<String> prizeDrawsId = new ArrayList<>();
+    private String token = null;
 
     public User() {
     }
@@ -75,5 +75,13 @@ public class User {
 
     public void setDraws(List<String> prizeDrawsId) {
         this.prizeDrawsId = prizeDrawsId;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

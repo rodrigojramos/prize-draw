@@ -2,6 +2,8 @@ package com.rodrigoramos.prize_draw.controllers;
 
 import com.rodrigoramos.prize_draw.dto.ParticipantDto;
 import com.rodrigoramos.prize_draw.dto.PrizeDrawDto;
+import com.rodrigoramos.prize_draw.entities.User;
+import com.rodrigoramos.prize_draw.services.AuthService;
 import com.rodrigoramos.prize_draw.services.PrizeDrawService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ public class PrizeDrawController {
 
     @Autowired
     private PrizeDrawService prizeDrawService;
+
+    @Autowired
+    private AuthService authService;
 
     @GetMapping
     public ResponseEntity<List<PrizeDrawDto>> findAll() {
@@ -37,8 +42,9 @@ public class PrizeDrawController {
     }
 
     @PostMapping
-    public ResponseEntity<PrizeDrawDto> insert(@RequestBody PrizeDrawDto dto) {
-        dto = prizeDrawService.insert(dto);
+    public ResponseEntity<PrizeDrawDto> insert(@RequestHeader("Authorization") String token,
+                                               @RequestBody PrizeDrawDto dto) {
+        dto = prizeDrawService.insert(dto, token);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }

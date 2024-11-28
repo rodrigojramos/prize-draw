@@ -9,9 +9,7 @@ import com.rodrigoramos.prize_draw.entities.PrizeDraw;
 import com.rodrigoramos.prize_draw.entities.User;
 import com.rodrigoramos.prize_draw.repositories.ParticipantRepository;
 import com.rodrigoramos.prize_draw.repositories.PrizeDrawRepository;
-import com.rodrigoramos.prize_draw.services.exceptions.ParticipantAlreadyRegisteredException;
-import com.rodrigoramos.prize_draw.services.exceptions.PrizeDrawAlreadyMadeException;
-import com.rodrigoramos.prize_draw.services.exceptions.ResourceNotFoundException;
+import com.rodrigoramos.prize_draw.services.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +34,9 @@ public class PrizeDrawService {
     @Autowired
     private AuditLogService auditLogService;
 
+    @Autowired
+    private AuthService authService;
+
     public void save(PrizeDraw prizeDraw) {
         prizeDrawRepository.save(prizeDraw);
     }
@@ -50,7 +51,15 @@ public class PrizeDrawService {
         return new PrizeDrawDto(entity);
     }
 
-    public PrizeDrawDto insert(PrizeDrawDto dto) {
+    @Transactional
+    public PrizeDrawDto insert(PrizeDrawDto dto, String token) {
+        if (token == null || token.isBlank()) {
+            throw new TokenNotProvidedException("Token não informado.");
+        }
+
+        User user = authService.validateToken(token)
+                .orElseThrow(() -> new InvalidTokenException("Token inválido ou sessão expirada."));
+
         PrizeDraw entity = new PrizeDraw();
         copyDtoToEntity(dto, entity);
         entity = prizeDrawRepository.insert(entity);
