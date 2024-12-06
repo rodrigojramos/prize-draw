@@ -1,0 +1,86 @@
+.prize-draw-admin-area-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.prize-draw-admin-area-welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 400px;
+}
+
+.prize-draw-containers {
+    display: flex;
+    flex-direction: column;
+}
+
+.prize-draw-container {
+    width: 330px;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #EEE;
+    margin-top: 20px;
+}
+
+.prize-draw-container span {
+    font-size: 12px;
+}
+
+.prize-draw-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #FFF;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.prize-draw-icon-size {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    color: #7D98C3;
+}
+
+.prize-draw-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+    background-color: #B0CBEF;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (min-width: 760px) {
+    .prize-draw-admin-area-welcome {
+        max-width: 600px;
+    }
+    .prize-draw-containers {
+        flex-direction: row;
+        gap: 30px;
+    }
+    .prize-draw-admin-area-container {
+        height: 562px;
+    }
+    .prize-draw-admin-area-welcome {
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .prize-draw-container {
+        width: 450px;
+    }
+}

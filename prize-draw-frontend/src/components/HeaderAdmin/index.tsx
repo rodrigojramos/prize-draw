@@ -11,7 +11,10 @@ export function HeaderAdmin() {
                     Prize Draw
                 </div>
                 <div className="prize-draw-header-settings">
-                    <p>Rodrigo</p>
+                    <div className="prize-draw-header-name">
+                        <p>Rodrigo</p>
+                        <span>Sair</span>
+                    </div>
                     <Settings className="prize-draw-icon-size"/>
                 </div>
             </div>

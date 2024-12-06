@@ -13,6 +13,7 @@
     font-size: 20px;
     font-weight: bold; 
     font-family: "Orbitron";
+    cursor: pointer;
 }
 
 .prize-draw-header-settings {
@@ -22,9 +23,23 @@
     gap: 10px;
 }
 
+.prize-draw-header-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.prize-draw-header-name span {
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .prize-draw-icon-size {
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 
 @media (min-width: 576px) {
@@ -33,5 +48,11 @@
     }
     .prize-draw-header {
         padding: 0px 40px;
+    }
+}
+
+@media (min-width: 760px) {
+    .prize-draw-header {
+        padding: 0px 60px;
     }
 }

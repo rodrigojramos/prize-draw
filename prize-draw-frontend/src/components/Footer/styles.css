@@ -1,0 +1,13 @@
+.prize-draw-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #B0CBEF;
+    font-family: "Orbitron";
+    padding: 10px;
+}
+
+.prize-draw-footer p {
+    font-size: 14px;
+}
