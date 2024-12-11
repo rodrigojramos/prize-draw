@@ -5,13 +5,13 @@ import { Settings } from 'lucide-react';
 export function HeaderAdmin() {
     return(
         <header>
-            <div className="prize-draw-header">
-                <div className='prize-draw-header-logo'>
+            <div className="prize-draw-admin-header">
+                <div className='prize-draw-admin-header-logo'>
                     <img src={IconLogo} alt="Logotipo" />
                     Prize Draw
                 </div>
-                <div className="prize-draw-header-settings">
-                    <div className="prize-draw-header-name">
+                <div className="prize-draw-admin-header-settings">
+                    <div className="prize-draw-admin-header-name">
                         <p>Rodrigo</p>
                         <span>Sair</span>
                     </div>

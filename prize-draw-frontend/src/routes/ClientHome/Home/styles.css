@@ -1,0 +1,76 @@
+.prize-draw-section-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 562px;
+}
+
+.prize-draw-main-sentence {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    padding: 20px 20px 40px 20px;
+    width: 340px;
+}
+
+.prize-draw-main-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    padding: 0px 20px;
+    width: 280px;
+}
+
+.prize-draw-home-login {
+    padding: 40px 20px 20px 20px;
+}
+
+.prize-draw-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    width: 280px;
+    border-radius: 12px;
+    background-color: #EEE;
+}
+
+.prize-draw-login p {
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.prize-draw-login input {
+    border: none;
+    width: 240px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+@media (min-width: 576px) {
+    .prize-draw-main-text {
+        width: 400px;
+        font-size: 20px;
+    }
+    .prize-draw-main-sentence {
+        width: 500px;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 760px) {
+    .prize-draw-main-text {
+        width: 540px;
+        font-size: 20px;
+    }
+    .prize-draw-main-sentence {
+        width: 700px;
+        font-size: 16px;
+    }
+}

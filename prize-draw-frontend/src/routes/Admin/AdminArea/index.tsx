@@ -55,7 +55,7 @@ export function AdminArea() {
                             <p>Sorteio de final do ano</p>
                             <CircleChevronRight className="prize-draw-icon-size"/>
                         </div>
-
+                        
                     </div>
                 </div>
             </section>

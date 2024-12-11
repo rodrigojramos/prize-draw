@@ -1,4 +1,4 @@
-.prize-draw-header {
+.prize-draw-admin-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,7 +6,7 @@
     padding: 0px 20px;
 }
 
-.prize-draw-header-logo {
+.prize-draw-admin-header-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,21 +16,21 @@
     cursor: pointer;
 }
 
-.prize-draw-header-settings {
+.prize-draw-admin-header-settings {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
-.prize-draw-header-name {
+.prize-draw-admin-header-name {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.prize-draw-header-name span {
+.prize-draw-admin-header-name span {
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
@@ -43,16 +43,16 @@
 }
 
 @media (min-width: 576px) {
-    .prize-draw-header-logo {
+    .prize-draw-admin-header-logo {
         font-size: 28px;
     }
-    .prize-draw-header {
+    .prize-draw-admin-header {
         padding: 0px 40px;
     }
 }
 
 @media (min-width: 760px) {
-    .prize-draw-header {
+    .prize-draw-admin-header {
         padding: 0px 60px;
     }
 }
