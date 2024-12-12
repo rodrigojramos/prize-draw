@@ -67,10 +67,8 @@
 @media (min-width: 760px) {
     .prize-draw-main-text {
         width: 540px;
-        font-size: 20px;
     }
     .prize-draw-main-sentence {
         width: 700px;
-        font-size: 16px;
     }
 }

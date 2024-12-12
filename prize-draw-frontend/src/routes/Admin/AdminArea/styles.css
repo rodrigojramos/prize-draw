@@ -70,4 +70,7 @@
     .prize-draw-container {
         width: 450px;
     }
+    .prize-draw-admin-area-welcome p {
+        font-size: 20px;
+    }
 }

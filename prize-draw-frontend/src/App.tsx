@@ -3,6 +3,7 @@ import { Admin } from "./routes/Admin";
 import { AdminArea } from "./routes/Admin/AdminArea";
 import { ClientHome } from "./routes/ClientHome";
 import { Home } from "./routes/ClientHome/Home";
+import { DrawForm } from "./routes/Admin/DrawForm";
 
 export default function App() {
   return(
@@ -13,6 +14,7 @@ export default function App() {
         </Route>
         <Route path="/admin" element={<Admin />}>
           <Route index element={<AdminArea />} />
+          <Route path="new-draw" element={<DrawForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
