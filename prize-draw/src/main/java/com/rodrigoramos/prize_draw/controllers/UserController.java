@@ -1,8 +1,9 @@
 package com.rodrigoramos.prize_draw.controllers;
 
 import com.rodrigoramos.prize_draw.dto.UserDto;
+import com.rodrigoramos.prize_draw.entities.User;
+import com.rodrigoramos.prize_draw.services.AuthService;
 import com.rodrigoramos.prize_draw.services.UserService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthService authService;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserDto> findById(@PathVariable String id) {
@@ -41,5 +45,11 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable String id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<Optional<User>> getMe(@RequestHeader("Authorization") String token) {
+        Optional<User> user = authService.validateToken(token);
+        return ResponseEntity.ok().body(user);
     }
 }

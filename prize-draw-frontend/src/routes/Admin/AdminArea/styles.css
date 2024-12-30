@@ -32,17 +32,6 @@
     font-size: 12px;
 }
 
-.prize-draw-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 10px;
-    font-size: 14px;
-    background-color: #FFF;
-    border-radius: 8px;
-    margin-top: 10px;
-}
-
 .prize-draw-icon-size {
     width: 20px;
     height: 20px;

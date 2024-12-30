@@ -2,7 +2,6 @@ package com.rodrigoramos.prize_draw.controllers;
 
 import com.rodrigoramos.prize_draw.dto.ParticipantDto;
 import com.rodrigoramos.prize_draw.dto.PrizeDrawDto;
-import com.rodrigoramos.prize_draw.entities.User;
 import com.rodrigoramos.prize_draw.services.AuthService;
 import com.rodrigoramos.prize_draw.services.PrizeDrawService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +32,24 @@ public class PrizeDrawController {
     public ResponseEntity<PrizeDrawDto> findById(@PathVariable String id) {
         PrizeDrawDto dto = prizeDrawService.findById(id);
         return ResponseEntity.ok().body(dto);
+    }
+
+    @GetMapping(value = "/{id}/draws")
+    public ResponseEntity<List<PrizeDrawDto>> findByCreatorId(@PathVariable String id) {
+        List<PrizeDrawDto> list = prizeDrawService.findByCreatorId(id);
+        return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping("/{id}/ongoing")
+    public ResponseEntity<List<PrizeDrawDto>> getOngoingPrizeDrawsByUser(@PathVariable String id) {
+        List<PrizeDrawDto> list = prizeDrawService.findOngoingPrizeDrawsByUser(id);
+        return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping("/{id}/finished")
+    public ResponseEntity<List<PrizeDrawDto>> getFinishedPrizeDrawsByUser(@PathVariable String id) {
+        List<PrizeDrawDto> list = prizeDrawService.findFinishedPrizeDrawsByUser(id);
+        return ResponseEntity.ok().body(list);
     }
 
     @PostMapping(value = "/{id}/winners")

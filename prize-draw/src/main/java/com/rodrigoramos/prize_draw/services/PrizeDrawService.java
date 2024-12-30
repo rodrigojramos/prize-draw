@@ -43,12 +43,27 @@ public class PrizeDrawService {
 
     public List<PrizeDrawDto> findAll() {
         List<PrizeDraw> list = prizeDrawRepository.findAll();
-        return list.stream().map(x -> new PrizeDrawDto(x)).toList();
+        return list.stream().map(PrizeDrawDto::new).toList();
     }
 
     public PrizeDrawDto findById(String id) {
         PrizeDraw entity = findPrizeDrawById(id);
         return new PrizeDrawDto(entity);
+    }
+
+    public List<PrizeDrawDto> findByCreatorId(String id) {
+        List<PrizeDraw> list = prizeDrawRepository.findByCreatorId(id);
+        return list.stream().map(PrizeDrawDto::new).toList();
+    }
+
+    public List<PrizeDrawDto> findOngoingPrizeDrawsByUser(String id) {
+        List<PrizeDraw> list = prizeDrawRepository.findByCreatorIdAndWinnersEmpty(id);
+        return list.stream().map(PrizeDrawDto::new).toList();
+    }
+
+    public List<PrizeDrawDto> findFinishedPrizeDrawsByUser(String id) {
+        List<PrizeDraw> list = prizeDrawRepository.findByCreatorIdAndWinnersNotEmpty(id);
+        return list.stream().map(PrizeDrawDto::new).toList();
     }
 
     @Transactional
