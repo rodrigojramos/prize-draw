@@ -1,0 +1,315 @@
+.prize-draw-details-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 562px;
+    padding: 10px;
+}
+
+.prize-draw-details-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 355px;
+    padding: 10px;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    background-color: #EEE;
+}
+
+.prize-draw-details-name h2 {
+    font-size: 16px;
+}
+
+.prize-draw-details-options-and-content {
+    display: flex;
+}
+
+.prize-draw-details-options {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: #EEE;
+    width: 355px;
+    padding: 10px;
+    gap: 15px;
+}
+
+.prize-draw-details-options p {
+    font-size: 8px;
+}
+
+.prize-draw-details-options-edit-delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.prize-draw-details-option-information,
+.prize-draw-details-option-list-participants,
+.prize-draw-details-option-logs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.prize-draw-details-option-information.active,
+.prize-draw-details-option-list-participants.active,
+.prize-draw-details-option-logs.active {
+    border: 1px solid #6c757d;
+    background-color: #f8f9fa;
+    color: #343a40;
+    font-weight: bold;
+}
+
+.prize-draw-details-content {
+    display: flex;
+    justify-content: center;
+    width: 355px;
+    padding: 10px;
+    border-left: 10px solid #EEE;
+    border-right: 10px solid #EEE;
+}
+
+.prize-draw-details-informations p {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.prize-draw-details-description {
+    display: flex;
+}
+
+.prize-draw-details-text {
+    padding-left: 5px;
+    text-align: justify;
+    hyphens: auto;
+    text-align-last: left;
+}
+
+.prize-draw-details-awards {
+    padding-bottom: 10px;
+}
+
+/* ------- LIST PARTICIPANT ------- */
+
+.prize-draw-details-list-participant {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 355px;
+}
+
+.prize-draw-details-table-list-participants {
+    width: 320px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.prize-draw-details-list-participant thead {
+    height: 30px;
+    font-size: 14px;
+}
+
+.prize-draw-details-list-participant tbody {
+    font-size: 12px;
+    text-align: center;
+}
+
+.prize-draw-details-list-participant tbody tr {
+    height: 30px;
+}
+
+.prize-draw-details-list-participant tbody tr:nth-child(odd) {
+    background-color: #B0CBEF;
+}
+
+/* ------- LIST LOGS ------- */
+
+.prize-draw-details-list-logs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 355px;
+}
+
+.prize-draw-details-table-list-logs {
+    width: 320px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.prize-draw-details-list-logs thead {
+    height: 30px;
+    font-size: 14px;
+}
+
+.prize-draw-details-list-logs tbody {
+    font-size: 12px;
+    text-align: center;
+}
+
+.prize-draw-details-list-logs tbody tr {
+    height: 80px;
+}
+
+.prize-draw-details-list-logs tbody tr:nth-child(odd) {
+    background-color: #B0CBEF;
+}
+
+/* ----------------------------------------*/
+
+.prize-draw-details-timer {
+    display: flex;
+    justify-content: center;
+    background-color: #EEE;
+    width: 355px;
+    padding: 10px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.prize-draw-details-timer p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+@media (min-width: 760px) {
+    .prize-draw-details-name {
+        width: 500px;
+        height: 60px;
+        padding: 10px;
+    }
+    
+    .prize-draw-details-name h2 {
+        font-size: 20px;
+    }
+
+    .prize-draw-details-options {
+        width: 500px;
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    .prize-draw-details-options p {
+        font-size: 10px;
+    }
+
+    .prize-draw-details-option-information,
+    .prize-draw-details-option-list-participants,
+    .prize-draw-details-option-logs {
+        width: 70px;
+        height: 70px;
+    }
+
+    .prize-draw-details-content {
+        width: 500px;
+        border-left: 20px solid #EEE;
+        border-right: 20px solid #EEE;
+    }
+
+    .prize-draw-details-timer {
+        width: 500px;
+        height: 50px;
+        align-items: center;
+    }
+
+    .prize-draw-details-informations p, h5 {
+        font-size: 14px;
+    }
+
+    .prize-draw-details-list-participant {
+        width: 500px;
+    }
+    
+    .prize-draw-details-table-list-participants {
+        width: 450px;
+    }
+
+    .prize-draw-details-list-participant tbody {
+        font-size: 14px;
+    }
+
+    .prize-draw-details-list-participant tbody tr {
+        height: 40px;
+    }
+
+    .prize-draw-details-list-logs {
+        width: 500px;
+    }
+
+    .prize-draw-details-table-list-logs {
+        width: 450px;
+    }
+
+    .prize-draw-details-list-logs tbody {
+        font-size: 14px;
+    }
+    
+    .prize-draw-details-list-logs tbody tr {
+        height: 80px;
+    }
+}
+
+@media (min-width: 992px) {
+    .prize-draw-details-name {
+        width: 900px;
+    }
+
+    .prize-draw-details-options {
+        width: 900px;
+        gap: 40px;
+    }
+    
+    .prize-draw-details-options p {
+        font-size: 12px;
+    }
+
+    .prize-draw-details-option-information,
+    .prize-draw-details-option-list-participants,
+    .prize-draw-details-option-logs {
+        width: 86px;
+    }
+
+    .prize-draw-details-content {
+        width: 900px;
+    }
+
+    .prize-draw-details-timer {
+        width: 900px;
+        height: 60px;
+    }
+
+    .prize-draw-details-list-participant {
+        width: 900px;
+    }
+    
+    .prize-draw-details-table-list-participants {
+        width: 850px;
+    }
+
+    .prize-draw-details-list-logs {
+        width: 900px;
+    }
+
+    .prize-draw-details-table-list-logs {
+        width: 850px;
+    }
+    
+    .prize-draw-details-list-logs tbody tr {
+        height: 60px;
+    }
+}
