@@ -20,3 +20,13 @@ export function getFinishedPrizeDrawsByUser(id: string) {
 
     return axios(config);
 }
+
+export function getPrizeDrawById(id: string) {
+    const config : AxiosRequestConfig = {
+        method: "GET",
+        baseURL: BASE_URL,
+        url: `/draws/${id}`,
+    }
+
+    return axios(config);
+}

@@ -65,7 +65,7 @@ public class ParticipantService {
 
         AuditLog log = new AuditLog();
         log.setAction("Usuário registrado!");
-        log.setDetails(entity.getName() + " foi registrado no sorteio " + prizeDrawId);
+        log.setDetails(entity.getName() + " de ID: " + entity.getId() + " foi registrado no sorteio.");
         log.setPrizeDrawId(prizeDrawId);
         AuditLogDto logDto = auditLogService.insert(new AuditLogDto(log));
 
