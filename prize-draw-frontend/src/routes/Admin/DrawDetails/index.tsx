@@ -5,15 +5,17 @@ import { PrizeDrawDTO } from '../../../models/prizeDraw';
 import * as prizeDrawService from "../../../services/prizeDraw-service";
 import * as participantService from "../../../services/participant-service";
 import * as logsService from "../../../services/logs-service";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ParticipantDTO } from '../../../models/participant';
 import { auditLogDTO } from '../../../models/auditLog';
+import { Link } from 'react-router-dom';
 
 export function DrawDetails() {
 
     const params = useParams();
+    const navigate = useNavigate();
 
-    const [selectedTab, setSelectedTab] = useState<'information' | 'participants' | 'logs'>('information');
+    const [selectedTab, setSelectedTab] = useState<'information' | 'participants' | 'logs' | 'edit' | 'delete'>('information');
 
     const [draw, setDraw] = useState<PrizeDrawDTO>();
 
@@ -111,6 +113,12 @@ export function DrawDetails() {
             })
     }, [params.drawId]);
 
+    function handleDeleteClick() {
+        prizeDrawService.deletePrizeDrawById(String(params.drawId));
+        navigate("/admin");
+        window.location.reload();
+    }
+
     return(
         <section className="prize-draw-details-section">
             <div className="prize-draw-details-name">
@@ -132,11 +140,14 @@ export function DrawDetails() {
                     <Logs />
                     <p>Logs</p>
                 </div>
-                <div className="prize-draw-details-options-edit-delete">
-                    <Pencil />
-                    <p>Editar</p>
-                </div>
-                <div className="prize-draw-details-options-edit-delete">
+                <Link to={`/admin/draw/${params.drawId}`}>
+                    <div className={"prize-draw-details-options-edit-delete"}>
+                        <Pencil />
+                        <p>Editar</p>
+                    </div>
+                </Link>
+                <div className={`prize-draw-details-options-edit-delete ${selectedTab === 'delete' ? 'active' : ''}`}
+                    onClick={() => setSelectedTab('delete')}>
                     <Trash2 />
                     <p>Excluir</p>
                 </div>
@@ -225,12 +236,24 @@ export function DrawDetails() {
                                             </tr>
                                         ))
                                     ) : (
-                                        <div className="prize-draw-details-list-participants-empty">
-                                            <p>Nenhum log até o momento.</p>
-                                        </div>
+                                        null
                                     )}
                                 </tbody>
                             </table>
+                        </div>
+                    </>
+                }
+                {
+                    selectedTab === 'delete' && 
+                    <>
+                        <div className="prize-draw-details-delete">
+                            <p>Tem certeza que deseja deletar este sorteio?</p>
+                            <button onClick={handleDeleteClick} className="prize-draw-btn">
+                                Sim
+                            </button>
+                            <button className="prize-draw-btn" onClick={() => setSelectedTab('information')}>
+                                Não
+                            </button>
                         </div>
                     </>
                 }

@@ -53,7 +53,8 @@
 
 .prize-draw-details-option-information,
 .prize-draw-details-option-list-participants,
-.prize-draw-details-option-logs {
+.prize-draw-details-option-logs,
+.prize-draw-details-options-edit-delete {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -67,7 +68,8 @@
 
 .prize-draw-details-option-information.active,
 .prize-draw-details-option-list-participants.active,
-.prize-draw-details-option-logs.active {
+.prize-draw-details-option-logs.active,
+.prize-draw-details-options-edit-delete.active {
     border: 1px solid #6c757d;
     background-color: #f8f9fa;
     color: #343a40;
@@ -178,6 +180,17 @@
 }
 
 /* ----------------------------------------*/
+
+.prize-draw-details-delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    min-width: 310px;
+    width: 100%;
+}
 
 .prize-draw-details-timer {
     display: flex;

@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    height: 562px;
+    min-height: 562px;
 }
 
 .prize-draw-form {
@@ -34,4 +34,89 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+
+.prize-draw-form-control {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    padding: 0 20px;
+    color: #636363;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+}
+  
+.prize-draw-form-control:focus {
+outline: none;
+}
+  
+.prize-draw-form-control::placeholder {
+color: #d9d9d9;
+}
+
+.prize-draw-form-text-area {
+    resize: none;
+    width: 100%;
+    height: 128px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #636363;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    padding: 10px 5px;
+}
+
+.prize-draw-form-text-area:focus {
+    outline: none;
+}
+    
+.prize-draw-form-text-area::placeholder {
+    color: #d9d9d9;
+}
+
+.prize-draw-form-awards {
+    width: 100%;  
+}
+
+.prize-draw-form-awards-input {
+    display: flex;
+    gap: 5px;
+}
+
+.prize-draw-btn-add-award {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #B0CBEF;
+    font-weight: bold;
+    cursor: pointer;
+    height: 40px;
+}
+
+.prize-draw-form-award-item {
+    display: flex;
+    gap: 5px;
+}
+
+.prize-draw-btn-remove-award {
+    width: 15px;
+    color: #B0CBEF;
+    cursor: pointer;
+}
+
+.prize-draw-awards {
+    display: flex;
+    justify-content: center;
+}
+
+.prize-draw-form-awards-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    width: 200px;
 }

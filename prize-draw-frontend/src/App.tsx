@@ -15,7 +15,7 @@ export default function App() {
         </Route>
         <Route path="/admin" element={<Admin />}>
           <Route index element={<AdminArea />} />
-          <Route path="new-draw" element={<DrawForm />} />
+          <Route path="draw/:drawId" element={<DrawForm />} />
           <Route path="draw-details/:drawId" element={<DrawDetails />} />
         </Route>
       </Routes>

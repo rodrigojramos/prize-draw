@@ -4,6 +4,7 @@ import { Settings } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import * as userService from '../../services/user-service'
 import { UserDTO } from '../../models/user';
+import { Link } from 'react-router-dom';
 
 export function HeaderAdmin() {
 
@@ -15,7 +16,6 @@ export function HeaderAdmin() {
             if(token) {
                 userService.findMe(token)
                     .then(response => {
-                        console.log(response.data);
                         setUser(response.data);
                     })
             }
@@ -34,7 +34,9 @@ export function HeaderAdmin() {
                         <p>{user?.name}</p>
                         <span>Sair</span>
                     </div>
-                    <Settings className="prize-draw-icon-size"/>
+                    <Link to="/admin">
+                        <Settings className="prize-draw-icon-size"/>
+                    </Link>
                 </div>
             </div>
         </header>

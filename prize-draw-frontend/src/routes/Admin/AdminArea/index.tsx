@@ -5,6 +5,7 @@ import { PrizeDrawDTO } from '../../../models/prizeDraw';
 import * as prizeDrawService from '../../../services/prizeDraw-service';
 import * as userService from '../../../services/user-service';
 import { UserDTO } from '../../../models/user';
+import { Link } from 'react-router-dom';
 
 export function AdminArea() {
 
@@ -19,7 +20,6 @@ export function AdminArea() {
         if(token) {
             userService.findMe(token)
                 .then(response => {
-                    console.log(response.data);
                     setUser(response.data);
                 })
         }
@@ -30,7 +30,6 @@ export function AdminArea() {
         if(user?.id) {
             prizeDrawService.getOngoingPrizeDrawsByUser(user.id)
                 .then(response => {
-                    console.log(response);
                     setOnGoingPrizeDraws(response.data);
                 });
         }
@@ -40,7 +39,6 @@ export function AdminArea() {
         if(user?.id) {
             prizeDrawService.getFinishedPrizeDrawsByUser(user.id)
                 .then(response => {
-                    console.log(response);
                     setFinishedPrizeDraws(response.data);
                 });
         }
@@ -56,22 +54,35 @@ export function AdminArea() {
                 <div className="prize-draw-containers">
                     <div className="prize-draw-container">
                         <h4>Sorteios em andamento</h4>
-                        <span>Você possui 3 sorteios em andamento.</span>
+                        {
+                            onGoingPrizeDraws.length >= 1 ? (
+                                <span>Você possui {onGoingPrizeDraws.length} sorteio em andamento.</span>
+                            ) : (
+                                <span>Você possui {onGoingPrizeDraws.length} sorteios em andamento.</span>
+                            )
+                        }
 
                         {
                             onGoingPrizeDraws.map((draw => (
                                 <PrizeDrawCard key={draw.id} draw={draw}/>
                             )))
                         }
-                        
-                        <button className="prize-draw-btn">
-                            Criar novo sorteio
-                        </button>
+                        <Link to="/admin/draw/create">
+                            <button className="prize-draw-btn">
+                                Criar novo sorteio
+                            </button>
+                        </Link>
                     </div>
 
                     <div className="prize-draw-container">
                         <h4>Sorteios finalizados</h4>
-                        <span>Você possui 3 sorteios finalizados.</span>
+                        {
+                            finishedPrizeDraws.length >= 1 ? (
+                                <span>Você possui {finishedPrizeDraws.length} sorteio finalizados.</span>
+                            ) : (
+                                <span>Você possui {finishedPrizeDraws.length} sorteios finalizados.</span>
+                            )
+                        }
 
                         {
                             finishedPrizeDraws.map((draw => (
