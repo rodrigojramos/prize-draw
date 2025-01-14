@@ -1,0 +1,147 @@
+.prize-draw-page-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 492px;
+    padding: 20px;
+}
+
+.prize-draw-page-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 320px;
+    border: 3px solid #B0CBEF;
+    border-radius: 12px;
+}
+
+.prize-draw-page-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.prize-draw-page-creator {
+    display: flex;
+    width: 290px;
+    font-size: 12px;
+    gap: 5px;
+}
+
+.prize-draw-page-end-date {
+    display: flex;
+    width: 290px;
+    font-size: 12px;
+    gap: 5px;
+}
+
+.prize-draw-page-description {
+    display: flex;
+    width: 290px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.prize-draw-page-description strong {
+    margin-right: 5px;
+}
+
+.prize-draw-page-awards {
+    display: flex;
+    justify-content: left;
+    width: 290px;
+    margin: 20px 0px;
+}
+
+.prize-draw-page-awards-organization {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.prize-draw-page-timer {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 8px;
+    width: 200px;
+    background-color: #B0CBEF;
+    font-weight: bold; 
+}
+
+.prize-draw-page-obs {
+    display: flex;
+    width: 290px;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.prize-draw-page-obs strong {
+    margin-right: 5px;
+}
+
+.prize-draw-page-register {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    background-color: #B0CBEF;
+    width: 320px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.prize-draw-page-register h4 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.prize-draw-page-register-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    gap: 10px;
+}
+
+.prize-draw-page-register-inputs input {
+    width: 200px;
+    height: 40px;
+    padding: 0 5px;
+    color: #636363;
+    border-radius: 4px;
+    border: none;
+    caret-color: #B0CBEF;
+}
+
+.prize-draw-page-register-inputs input:focus {
+    outline: none;
+}
+      
+.prize-draw-page-register-inputs input::placeholder {
+    color: #d9d9d9;
+}
+
+.prize-draw-page-register-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.prize-draw-page-register-btn button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    background-color: #FFF;
+    font-weight: bold;
+    cursor: pointer;
+    width: 200px;
+}
