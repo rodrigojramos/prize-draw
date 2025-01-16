@@ -66,3 +66,13 @@ export function insertPrizeDraw(obj: PrizeDrawDTO, token: string) {
 
     return axios(config);
 }
+
+export function winnersDraw(id: string) {
+    const config : AxiosRequestConfig = {
+        method: "POST",
+        baseURL: BASE_URL,
+        url: `/draws/${id}/winners`,
+    }
+
+    return axios(config);
+}

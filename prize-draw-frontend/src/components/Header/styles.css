@@ -8,6 +8,13 @@
     font-family: "Orbitron";
 }
 
+.prize-draw-header-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
 @media (min-width: 576px) {
     .prize-draw-header {
         font-size: 28px;

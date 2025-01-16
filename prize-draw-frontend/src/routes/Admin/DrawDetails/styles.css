@@ -23,6 +23,20 @@
     font-size: 16px;
 }
 
+.prize-draw-details-link {
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+    gap: 5px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    width: 170px;
+    padding: 3px;
+}
+
 .prize-draw-details-options-and-content {
     display: flex;
 }
@@ -54,7 +68,8 @@
 .prize-draw-details-option-information,
 .prize-draw-details-option-list-participants,
 .prize-draw-details-option-logs,
-.prize-draw-details-options-edit-delete {
+.prize-draw-details-options-edit-delete,
+.prize-draw-details-winners-btn {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,7 +84,8 @@
 .prize-draw-details-option-information.active,
 .prize-draw-details-option-list-participants.active,
 .prize-draw-details-option-logs.active,
-.prize-draw-details-options-edit-delete.active {
+.prize-draw-details-options-edit-delete.active,
+.prize-draw-details-winners-btn.active {
     border: 1px solid #6c757d;
     background-color: #f8f9fa;
     color: #343a40;
@@ -199,7 +215,7 @@
     align-items: center;
     background-color: #EEE;
     width: 355px;
-    height: 90px;
+    height: 110px;
     padding: 10px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
@@ -226,6 +242,36 @@
     color: #FFF;
 }
 
+.prize-draw-details-participants-winners {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 310px;
+    min-height: 200px;
+    gap: 10px;
+}
+
+.prize-draw-details-participants-winners p {
+    font-size: 12px;
+}
+
+.prize-draw-details-winners {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+
+.prize-draw-details-winners span {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.prize-draw-details-winners-btn p {
+    font-size: 8px;
+}
+
 @media (min-width: 760px) {
     .prize-draw-details-name {
         width: 500px;
@@ -249,7 +295,8 @@
 
     .prize-draw-details-option-information,
     .prize-draw-details-option-list-participants,
-    .prize-draw-details-option-logs {
+    .prize-draw-details-option-logs,
+    .prize-draw-details-winners-btn {
         width: 70px;
         height: 70px;
     }
@@ -262,7 +309,7 @@
 
     .prize-draw-details-timer {
         width: 500px;
-        height: 90px;
+        height: 130px;
         align-items: center;
     }
 
@@ -305,6 +352,18 @@
     .prize-draw-details-list-logs tbody tr {
         height: 80px;
     }
+    
+    .prize-draw-details-winners-btn p {
+        font-size: 10px;
+    }
+
+    .prize-draw-details-participants-winners {
+        min-width: 450px;
+    }
+    
+    .prize-draw-details-participants-winners p {
+        font-size: 14px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -323,7 +382,8 @@
 
     .prize-draw-details-option-information,
     .prize-draw-details-option-list-participants,
-    .prize-draw-details-option-logs {
+    .prize-draw-details-option-logs,
+    .prize-draw-details-winners-btn {
         width: 86px;
     }
 
@@ -333,7 +393,7 @@
 
     .prize-draw-details-timer {
         width: 900px;
-        height: 90px;
+        height: 130px;
     }
 
     .prize-draw-details-list-participant {
@@ -358,5 +418,13 @@
     
     .prize-draw-details-list-logs tbody tr {
         height: 60px;
+    }
+
+    .prize-draw-details-winners-btn p {
+        font-size: 12px;
+    }
+
+    .prize-draw-details-participants-winners {
+        min-width: 850px;
     }
 }

@@ -25,10 +25,12 @@ export function HeaderAdmin() {
     return(
         <header>
             <div className="prize-draw-admin-header">
-                <div className='prize-draw-admin-header-logo'>
-                    <img src={IconLogo} alt="Logotipo" />
-                    Prize Draw
-                </div>
+                <Link to="/admin">
+                    <div className='prize-draw-admin-header-logo'>
+                        <img src={IconLogo} alt="Logotipo" />
+                        Prize Draw
+                    </div>
+                </Link>
                 <div className="prize-draw-admin-header-settings">
                     <div className="prize-draw-admin-header-name">
                         <p>{user?.name}</p>

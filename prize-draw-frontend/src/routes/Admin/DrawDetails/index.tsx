@@ -1,4 +1,4 @@
-import { BookOpenText, Logs, NotebookText, Pencil, Trash2 } from 'lucide-react';
+import { BookOpenText, CircleArrowRight, Logs, NotebookText, Pencil, Trash2, Trophy } from 'lucide-react';
 import './styles.css';
 import { useEffect, useState } from 'react';
 import { PrizeDrawDTO } from '../../../models/prizeDraw';
@@ -15,7 +15,7 @@ export function DrawDetails() {
     const params = useParams();
     const navigate = useNavigate();
 
-    const [selectedTab, setSelectedTab] = useState<'information' | 'participants' | 'logs' | 'edit' | 'delete'>('information');
+    const [selectedTab, setSelectedTab] = useState<'information' | 'participants' | 'logs' | 'edit' | 'delete' | 'winners'>('information');
 
     const [draw, setDraw] = useState<PrizeDrawDTO>();
 
@@ -119,10 +119,24 @@ export function DrawDetails() {
         window.location.reload();
     }
 
+    function handleWinnersClick() {
+        prizeDrawService.winnersDraw(String(params.drawId))
+            .then(response => {
+                console.log(response.data);
+                window.location.reload();
+            })
+    }
+
     return(
         <section className="prize-draw-details-section">
             <div className="prize-draw-details-name">
                 <h2>{draw?.name}</h2>
+                <Link to={`/draw/${params.drawId}`}>
+                    <div className="prize-draw-details-link">
+                        <p>Página para se registrar </p>
+                        <CircleArrowRight size={14}/>
+                    </div>
+                </Link>
             </div>
             <div className="prize-draw-details-options">
                 <div className={`prize-draw-details-option-information ${selectedTab === 'information' ? 'active' : ''}`}
@@ -257,18 +271,47 @@ export function DrawDetails() {
                         </div>
                     </>
                 }
+                {
+                  selectedTab === 'winners' && 
+                  <>
+                      <div className="prize-draw-details-participants-winners">
+                        <h4>Vencedores:</h4>
+                        {draw?.winners?.map((winner, index) => (
+                            <p key={index}>
+                            <strong>{`${index + 1}º Lugar:`}</strong> {winner.name}
+                            </p>
+                        ))} 
+                      </div>
+                  </>  
+                }
             </div>
             <div className="prize-draw-details-timer">
-                <p>{timeRemaining}</p>
                 {
-                    timeRemaining == '00D:00H:00M' ? (
-                        <button className="prize-draw-btn">
-                            Sortear
-                        </button>
+                    draw?.winners && draw.winners.length > 0 ? (
+                        <div className="prize-draw-details-winners">
+                            <span>Sorteio já foi realizado!</span>
+                            <div className={`prize-draw-details-winners-btn ${selectedTab === 'winners' ? 'active' : ''}`}
+                                onClick={() => setSelectedTab('winners')}>
+                                <Trophy />
+                                <p>Vencedores</p>
+                            </div>
+                        </div>
                     ) : (
-                        <button className="prize-draw-details-btn">
-                            Sortear
-                        </button>
+                            timeRemaining === '00D:00H:00M' ? (
+                                <>
+                                    <p>{timeRemaining}</p>
+                                    <button onClick={handleWinnersClick} className="prize-draw-btn">
+                                        Sortear
+                                    </button>
+                                </> 
+                            ) : (
+                                <>
+                                    <p>{timeRemaining}</p>
+                                    <button className="prize-draw-details-btn">
+                                        Sortear
+                                    </button>
+                                </>
+                            )
                     )
                 }
             </div>

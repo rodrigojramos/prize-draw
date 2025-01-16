@@ -134,60 +134,81 @@ export function PrizeDrawPage() {
                         ))}
                     </div>
                 </div>
-                <div className="prize-draw-page-timer">
-                    <p>{timeRemaining}</p>
-                </div>
+                {
+                    prizeDraw?.winners && prizeDraw.winners.length > 0 ? (
+                        null
+                    ) : (
+                            <div className="prize-draw-page-timer">
+                                <p>{timeRemaining}</p>
+                            </div>
+                    )
+                }
                 <div className="prize-draw-page-obs">
                     <p><strong>Observações:</strong>As inscrições serão encerradas assim que o timer chegar a zero, porém o sorteio só será realizado quando o criador do sorteio quiser.</p>
                 </div>
             </div>
+
             {
-                registeredParticipant == false ? (
-                    <form onSubmit={handleSubmit}>
-                        <div className="prize-draw-page-register">
-                            <h4>Para se inscrever preencha seus dados abaixo:</h4>
-                            <div className="prize-draw-page-register-inputs">
-                                <input 
-                                    name="name"
-                                    value={formData.name.value}
-                                    type="text"
-                                    placeholder="Nome"
-                                    onChange={handleInputChange}
-                                />
-                                <input 
-                                    name="document"
-                                    value={formData.document.value}
-                                    type="text"
-                                    placeholder="Documento"
-                                    onChange={handleInputChange}
-                                />
-                                <input 
-                                    name="email"
-                                    value={formData.email.value}
-                                    type="text"
-                                    placeholder="E-mail"
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                            <div className="prize-draw-page-register-btn">
-                                <button>Registrar</button>
-                            </div>
-                        </div>
-                    </form>
-                ) : (
+                prizeDraw?.winners && prizeDraw.winners.length > 0 ? (
                     <div className="prize-draw-page-register">
-                        <div className="prize-draw-page-participant-registered">
-                            <p>{participant?.name}, você foi registrado no sorteio com sucesso.</p>
-                            <span>Para realizar um novo registro clique no botão abaixo:</span>
-                            <div className="prize-draw-page-register-btn">
-                                <button onClick={handleNewRegisterClick}>
-                                    Novo Registro
-                                </button>
-                            </div>
+                        <div className="prize-draw-page-winners">
+                            <h4>Sorteio já foi realizado!</h4>
+                            <h4>Lista dos ganhadores:</h4>
+                            {prizeDraw?.winners?.map((winner, index) => (
+                            <p key={index}>
+                            <strong>{`${index + 1}º Lugar:`}</strong> {winner.name}
+                            </p>
+                        ))} 
                         </div>
                     </div>
-                )
-            }
+                ) : (
+                        registeredParticipant == false ? (
+                            <form onSubmit={handleSubmit}>
+                                <div className="prize-draw-page-register">
+                                    <h4>Para se inscrever preencha seus dados abaixo:</h4>
+                                    <div className="prize-draw-page-register-inputs">
+                                        <input 
+                                            name="name"
+                                            value={formData.name.value}
+                                            type="text"
+                                            placeholder="Nome"
+                                            onChange={handleInputChange}
+                                        />
+                                        <input 
+                                            name="document"
+                                            value={formData.document.value}
+                                            type="text"
+                                            placeholder="Documento"
+                                            onChange={handleInputChange}
+                                        />
+                                        <input 
+                                            name="email"
+                                            value={formData.email.value}
+                                            type="text"
+                                            placeholder="E-mail"
+                                            onChange={handleInputChange}
+                                        />
+                                    </div>
+                                    <div className="prize-draw-page-register-btn">
+                                        <button>Registrar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        ) : (
+                            <div className="prize-draw-page-register">
+                                <div className="prize-draw-page-participant-registered">
+                                    <p>{participant?.name}, você foi registrado no sorteio com sucesso.</p>
+                                    <span>Para realizar um novo registro clique no botão abaixo:</span>
+                                    <div className="prize-draw-page-register-btn">
+                                        <button onClick={handleNewRegisterClick}>
+                                            Novo Registro
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    )
+                }
         </section>
     )
 }

@@ -156,3 +156,10 @@
     font-size: 12px;
     margin-top: 20px;
 }
+
+.prize-draw-page-winners {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
