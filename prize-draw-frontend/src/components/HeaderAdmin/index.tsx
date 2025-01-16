@@ -2,11 +2,14 @@ import './styles.css';
 import IconLogo from "../../assets/svg/IconLogo.svg";
 import { Settings } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import * as userService from '../../services/user-service'
+import * as userService from '../../services/user-service';
+import * as authService from '../../services/auth-service';
 import { UserDTO } from '../../models/user';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export function HeaderAdmin() {
+    
+    const navigate = useNavigate();
 
     const [user, setUser] = useState<UserDTO>();
 
@@ -22,6 +25,13 @@ export function HeaderAdmin() {
     
         },[])
 
+    async function handleLogout() {
+        authService.logout()
+            .then(() => {
+                navigate("/")
+            })
+    }
+            
     return(
         <header>
             <div className="prize-draw-admin-header">
@@ -34,7 +44,7 @@ export function HeaderAdmin() {
                 <div className="prize-draw-admin-header-settings">
                     <div className="prize-draw-admin-header-name">
                         <p>{user?.name}</p>
-                        <span>Sair</span>
+                        <span onClick={handleLogout}>Sair</span>
                     </div>
                     <Link to="/admin">
                         <Settings className="prize-draw-icon-size"/>
